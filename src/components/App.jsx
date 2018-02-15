@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      text:''
+      text:'',
+      dueDate: ''
     }
   }
 
@@ -16,8 +17,6 @@ class App extends Component {
   }
 
   deleteReminder(id){
-    // console.log('deleting in application', id);
-    // console.log('this.props', this.props);
     this.props.deleteReminder(id);
   }
 
@@ -50,6 +49,8 @@ class App extends Component {
         <div className='form-inline reminder-form'>
           <div className='form-group'>
             <input className='form-control' placeholder='I have to...' onChange={event => this.setState({text: event.target.value})}/>
+            {/* datetime-local picker only works on chrome!  */}
+            <input className='form-control' type='datetime-local' onChange={event => this.setState({dueDate: event.target.value})}/>
           </div>
           <button type='button' className='btn btn-success' onClick={() => this.addReminder()}>Add Reminder</button>
         </div>
