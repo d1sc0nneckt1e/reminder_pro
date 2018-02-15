@@ -15,17 +15,36 @@ class App extends Component {
     this.props.addReminder(this.state.text);
   }
 
+  renderReminders(){
+    const { reminders } = this.props;
+    // console.log('reminders', reminders);
+    return(
+      <ul className='list-group col-sm-4'>
+        {
+          reminders.map(reminder => {
+            return(
+              <li key={reminder.id} className='list-group-item'>
+                <div>{reminder.text}</div>
+              </li>
+            )
+          })
+        }
+      </ul>
+    )
+  }
+
   render(){
     // console.log('this.props', this.props);
     return(
       <div className='App'>
         <div className='title'>Reminder Pro</div>
-        <div className='form-inline'>
+        <div className='form-inline reminder-form'>
           <div className='form-group'>
             <input className='form-control' placeholder='I have to...' onChange={event => this.setState({text: event.target.value})}/>
           </div>
           <button type='button' className='btn btn-success' onClick={() => this.addReminder()}>Add Reminder</button>
         </div>
+        { this.renderReminders() }
       </div>
     )
   }
@@ -34,7 +53,7 @@ class App extends Component {
 function mapStateToProps(state){
   // console.log('state', state);
   return{
-    remiders: state
+    reminders: state
   }
 }
 
