@@ -30,3 +30,8 @@ input{
 .delete-button:hover{
   cursor: pointer;
 }
+
+.reminder-date{
+  font-style: italic;
+  font-size: 12px;
+}

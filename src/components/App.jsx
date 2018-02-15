@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addReminder, deleteReminder } from '../actions';
+import moment from 'moment';
 import '../App.css';
 
 class App extends Component {
@@ -30,7 +31,10 @@ class App extends Component {
           reminders.map(reminder => {
             return(
               <li key={reminder.id} className='list-group-item'>
-                <div className='list-item'>{reminder.text}</div>
+                <div className='list-item'>
+                  <div>{reminder.text}</div>
+                  <div className='reminder-date'>{moment(new Date(reminder.dueDate)).fromNow()}</div>
+                </div>
                 <div className='list-item delete-button' onClick={() => this.deleteReminder(reminder.id)}>
                   &#x2715;
                 </div>
